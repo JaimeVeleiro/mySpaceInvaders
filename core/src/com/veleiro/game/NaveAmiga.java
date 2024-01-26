@@ -11,15 +11,16 @@ public class NaveAmiga extends Nave{
         super(posX, posY, velX, velY, vivo);
         this.tNaveAmiga = tNaveAmiga;
         this.tExplosion = tExplosion;
+
     }
 
 
     //Metodos
-    public Texture gettNaveEnemiga() {
+    public Texture gettNaveAmiga() {
         return tNaveAmiga;
     }
 
-    public void settNaveEnemiga(Texture tNaveAmiga) {
+    public void settNaveAmiga(Texture tNaveAmiga) {
         this.tNaveAmiga = tNaveAmiga;
     }
 

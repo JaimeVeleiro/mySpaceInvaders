@@ -8,20 +8,22 @@ import java.util.ArrayList;
 public class Batallon {
     //Atributos
     protected ArrayList<Escuadron> misEscuadrones = new ArrayList<Escuadron>();
-    protected Texture imagen;
+    //protected Texture imagen;
 
     //Constructor
-    public Batallon(int altura, int numeroEscuadrones, Texture tExplosion, Texture tNaveEnemiga){
+    public Batallon(int altura,int ancho, int numeroEscuadrones, Texture tExplosion, Texture tNaveEnemiga){
+        //this.imagen = tNaveEnemiga;
         int y, trozo;
         trozo = (altura/2) / (numeroEscuadrones + 1);
         y = trozo;
 
         for (int i = 0; i < numeroEscuadrones; i++){
-            Escuadron unEscuadron = new Escuadron(800, 6,  y, tExplosion, tNaveEnemiga);
+            Escuadron unEscuadron = new Escuadron(ancho, 6,  y, tExplosion, tNaveEnemiga);
             misEscuadrones.add(unEscuadron);
             y += trozo;
         }
     }
+
     //Metodos
     public void render(SpriteBatch sb){
         if(misEscuadrones != null) {
@@ -32,8 +34,8 @@ public class Batallon {
     }
 
     public void dispose(){
-        if (imagen != null){
+        /*if (imagen != null){
             imagen.dispose();
-        }
+        }*/
     }
 }

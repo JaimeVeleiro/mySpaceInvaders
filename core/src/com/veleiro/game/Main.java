@@ -6,10 +6,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.util.ArrayList;
+
 public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img, navesEnemigas, naveAmiga, disparo, explosion;
 	Batallon miBatallon;
+	NaveAmiga miNave;
 
 
 
@@ -24,16 +27,29 @@ public class Main extends ApplicationAdapter {
 		disparo = new Texture("disparo.png");
 		explosion = new Texture("explosion.png");
 
-		miBatallon = new Batallon(altura, 4, explosion, navesEnemigas);
+		miBatallon = new Batallon(altura, ancho, 4, explosion, navesEnemigas);
+
+		NaveAmiga miJugador = new NaveAmiga(0.0f, 0.0f, 3.0f, 0.0f, true, naveAmiga, explosion);
+		miNave = miJugador;
+		/*ArrayList<Disparo> losDisparos = new ArrayList<Disparo>();
+		spawDisparos();*/
 	}
+
+	/*private void spawDisparos(){
+		Disparo unDisparo = new Disparo(5.0f, 5.0f, 0.0f, 0.0f, true);
+
+		losDisparos.add(unDisparo);
+	}*/
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(0, 0, 0, 1);
+
 		batch.begin();
-		//miBatallon.render(batch);
-		//naveAmiga.render(batch);
-		batch.draw(naveAmiga, 100, 350);
+		miBatallon.render(batch);
+		//miNave.render(batch);
+		batch.draw(miNave.gettNaveAmiga(), 0, 0);
+		//batch.draw(naveAmiga, 23, 350);
 		batch.end();
 	}
 	
@@ -41,7 +57,7 @@ public class Main extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
-		//naveAmiga.dispose();
+		miNave.dispose();
 		miBatallon.dispose();
 	}
 }

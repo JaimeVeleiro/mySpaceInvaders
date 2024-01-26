@@ -1,5 +1,7 @@
 package com.veleiro.game;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public class Disparo extends ObjetoVolador{
     protected boolean pantalla;
 

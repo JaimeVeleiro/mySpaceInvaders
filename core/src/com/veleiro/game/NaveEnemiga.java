@@ -11,11 +11,11 @@ public class NaveEnemiga extends Nave{
         super(posX, posY, velX, velY, vivo);
         this.tNaveEnemiga = tNaveEnemiga;
         this.tExplosion = tExplosion;
+        imagen = tNaveEnemiga;
     }
 
 
     //Metodos
-
 
     public Texture gettNaveEnemiga() {
         return tNaveEnemiga;
