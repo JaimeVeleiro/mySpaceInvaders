@@ -19,7 +19,7 @@ public class Escuadron {
         x = trozo;
 
         for (int i = 0; i < numeroNaves; i++){
-            NaveEnemiga unaNaveEnemiga = new NaveEnemiga(x, posY, 0, 0, true, tNaveEnemiga, tExplosion);
+            NaveEnemiga unaNaveEnemiga = new NaveEnemiga(x, posY, 1.0f, 0, tNaveEnemiga, true, tExplosion);
             misNavesEnemigas.add(unaNaveEnemiga);
             x += trozo;
         }
@@ -30,6 +30,28 @@ public class Escuadron {
             for (NaveEnemiga naveEnemiga:misNavesEnemigas) {
                 naveEnemiga.render(sb);
             }
+        }
+    }
+
+    public float getPosY() {
+        return posY;
+    }
+
+    public void setPosY(float posY) {
+        this.posY = posY;
+    }
+
+    public float getPosXFirst(){
+        return misNavesEnemigas.get(0).getPosX();
+    }
+
+    public float getPosXLast(){
+        return misNavesEnemigas.get(misNavesEnemigas.size()-1).getPosX();
+    }
+
+    public void setVelXBat(float velX){
+        for (NaveEnemiga nave: misNavesEnemigas){
+            nave.setVelX(velX);
         }
     }
 }

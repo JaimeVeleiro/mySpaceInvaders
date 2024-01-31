@@ -10,11 +10,12 @@ public class ObjetoVolador {
     protected Texture imagen;
 
 
-    public ObjetoVolador(float posX, float posY, float velX, float velY) {
+    public ObjetoVolador(float posX, float posY, float velX, float velY, Texture imagen) {
         this.posX = posX;
         this.posY = posY;
         this.velX = velX;
         this.velY = velY;
+        this.imagen = imagen;
     }
 
     public float getPosX() {
@@ -49,6 +50,14 @@ public class ObjetoVolador {
         this.velY = velY;
     }
 
+    public Texture getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Texture imagen) {
+        this.imagen = imagen;
+    }
+
     public boolean colision(ObjetoVolador unDisparo){
         return this.colisionFilas(unDisparo) && this.colisionColumnas(unDisparo);
     }
@@ -79,6 +88,6 @@ public class ObjetoVolador {
     }
 
     public void render(SpriteBatch sb) {
-        sb.draw(imagen, posX, posY);
+        sb.draw(imagen, (posX + velX), (posY + velY));
     }
 }

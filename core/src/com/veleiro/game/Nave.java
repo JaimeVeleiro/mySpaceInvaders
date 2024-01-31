@@ -7,8 +7,8 @@ public class Nave extends ObjetoVolador{
     protected boolean vivo;
     //Constructor
 
-    public Nave(float posX, float posY, float velX, float velY, boolean vivo) {
-        super(posX, posY, velX, velY);
+    public Nave(float posX, float posY, float velX, float velY, Texture imagen, boolean vivo) {
+        super(posX, posY, velX, velY, imagen);
         this.vivo = vivo;
     }
 
@@ -21,4 +21,5 @@ public class Nave extends ObjetoVolador{
     public void setVivo(boolean vivo) {
         this.vivo = vivo;
     }
+
 }
