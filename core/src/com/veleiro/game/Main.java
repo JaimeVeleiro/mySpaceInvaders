@@ -16,7 +16,6 @@ public class Main extends ApplicationAdapter {
 	NaveAmiga miNave;
 	ArrayList<DisparoAmigo> misDisparos;
 
-
 	@Override
 	public void create () {
 		int altura = Gdx.graphics.getHeight();
@@ -29,6 +28,7 @@ public class Main extends ApplicationAdapter {
 		explosion = new Texture("explosion.png");
 
 		miBatallon = new Batallon(altura, ancho, 4, explosion, navesEnemigas);
+
 
 		miNave = new NaveAmiga(0.0f, 0.0f, 6.0f, 0.0f, naveAmiga, true, explosion);
 
@@ -60,13 +60,13 @@ public class Main extends ApplicationAdapter {
 			miNave.setPosX(miNave.getPosX() - miNave.getVelX());
 		}
 
-		if (Gdx.input.isTouched()){
+		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
 			spawnDisparos();
 		}
 
-		/*for (DisparoAmigo disparo: misDisparos){
+		for (DisparoAmigo disparo: misDisparos){
 			disparo.setPosY(disparo.getPosY() + disparo.getVelY());
-		}*/
+		}
 
 		if (miBatallon.getPosXFirst() == 0){
 			miBatallon.setVelXBat(1.0f);
@@ -80,15 +80,31 @@ public class Main extends ApplicationAdapter {
 		}
 
 		for (int i = 0; i < miBatallon.misEscuadrones.size(); i++){
-			for (NaveEnemiga nave: miBatallon.misEscuadrones.get(i).misNavesEnemigas/*int j = 0; j < miBatallon.misEscuadrones.get(i).misNavesEnemigas.size(); j++*/){
+			for (NaveEnemiga nave: miBatallon.misEscuadrones.get(i).misNavesEnemigas){
 				nave.setPosX(nave.getPosX() + nave.getVelX());
 			}
 		}
 
+		for (int i = 0; i < miBatallon.misEscuadrones.size(); i++){
+			for (NaveEnemiga nave: miBatallon.misEscuadrones.get(i).misNavesEnemigas) {
+				for (DisparoAmigo disparo: misDisparos){
+					if (nave.colision(disparo)){
+						nave.setVivo(false);
+						nave.settNaveEnemiga(explosion);
+					}
 
+				}
 
+			}
+		}
 
 		batch.begin();
+		for (DisparoAmigo disparo: misDisparos){
+			if ((disparo.getPosY() - disparo.getHeight()) < Gdx.graphics.getHeight()){
+				disparo.render(batch);
+			}
+		}
+
 		miBatallon.render(batch);
 		miNave.render(batch);
 		batch.end();
@@ -100,5 +116,6 @@ public class Main extends ApplicationAdapter {
 		img.dispose();
 		miNave.dispose();
 		miBatallon.dispose();
+		disparo.dispose();
 	}
 }

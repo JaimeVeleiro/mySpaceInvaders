@@ -90,4 +90,6 @@ public class ObjetoVolador {
     public void render(SpriteBatch sb) {
         sb.draw(imagen, (posX + velX), (posY + velY));
     }
+
+
 }
